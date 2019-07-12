@@ -73,6 +73,8 @@ function move(e){
         
         offset.y = 0;
     }
+    applyRangerPaging(rangerThumb, rangerProgress, true);
+    enableSwipe();
     if(animating){
         container.classList.toggle("animating", !(animating = false));
     }
@@ -127,29 +129,31 @@ function setRangerValue(v, thumb, progress){
 }
 
 function applyRangerPaging(thumb, progress, force = false){
-    var labels = thumb.parentNode.parentNode.getElementsByClassName("custom-input-range-labels")[0];
+    if(thumb && progress){
+        var labels = thumb.parentNode.parentNode.getElementsByClassName("custom-input-range-labels")[0];
 
-    var c = labels.children.length-1;
-    var pos = getRangerThumbPosition(thumb);
-    if(c > 0){
-        var step = 100.0 / c;
-        for(var i = 0; i < c; i++){
-            var leftV = i*step;
-            var rightV = (i+1)*step;
-            if(leftV < pos && pos <= rightV){
-                var deltaL = Math.abs(pos - leftV);
-                var deltaR = Math.abs(rightV - pos);
+        var c = labels.children.length-1;
+        var pos = getRangerThumbPosition(thumb);
+        if(c > 0){
+            var step = 100.0 / c;
+            for(var i = 0; i < c; i++){
+                var leftV = i*step;
+                var rightV = (i+1)*step;
+                if(leftV < pos && pos <= rightV){
+                    var deltaL = Math.abs(pos - leftV);
+                    var deltaR = Math.abs(rightV - pos);
 
-                var page = (deltaL > deltaR ? i+1 : i)
-                var val = (deltaL > deltaR ? rightV : leftV);
-                if(pagesForRanger){
-                    pagesForRanger.style.setProperty("--current", page);
+                    var page = (deltaL > deltaR ? i+1 : i)
+                    var val = (deltaL > deltaR ? rightV : leftV);
+                    if(pagesForRanger){
+                        pagesForRanger.style.setProperty("--current", page);
+                    }
+
+                    if(force){
+                        setRangerValue(val, thumb, progress);
+                    }
+                    return;
                 }
-
-                if(force){
-                    setRangerValue(val, thumb, progress);
-                }
-                return;
             }
         }
     }
@@ -193,7 +197,7 @@ window.onload = function(){
     for(var i = 0; i < rangers.length; i++){
         var ranger = rangers[i];
         //ranger.addEventListener("mouseover", disableSwipe, false);
-        ranger.addEventListener("mouseout", enableSwipe, false);
+        //ranger.addEventListener("mouseout", disableSwipe, false);
         ranger.addEventListener("touchend", enableSwipe, false);
         //ranger.addEventListener("mousemove", drag, false);
         //ranger.addEventListener("touchmove", drag, false);
@@ -201,6 +205,7 @@ window.onload = function(){
         var thumb = ranger.getElementsByClassName("custom-input-range-ranger-thumb")[0];
         thumb.addEventListener("mousedown", selectThumb, false);
         thumb.addEventListener("touchstart", selectThumb, false);
+        //thumb.addEventListener("mouseout", deselectThumb, false);
         thumb.addEventListener("mouseup", deselectThumb, false);
         thumb.addEventListener("touchend", deselectThumb, false);
     }
