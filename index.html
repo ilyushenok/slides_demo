@@ -9,7 +9,7 @@
     </head>
     <body>                                         
         <div class="container">
-            <section class="section-paralax">
+            <section>
                 <img class="section-background" src="app/img/slide_1_bg.png">
                 <div class="section-paralax-front">
                     <div class="section-paralax-inner">
@@ -68,9 +68,38 @@
             </section>
             <section>
                 <img class="section-background" src="app/img/slide_3_bg.png">
-                <h1>Text 3</h1>
-                <!-- Заменить input на div с плюшками ручного ввода -->
-                <input type="range" min="50" max="10000" step="50" value="30" class="b-balance-tariff-custom-slider" id="b-balance-tariff-custom-slider" style="background-size: 44.8744% 100%;">
+                <div class="section-paralax-front">
+                    <div class="section-paralax-inner">
+                        <div id="slide-3-pages" class="section-pages">
+                            <div class="section-page">
+                                <h1 class="h1-slide-3">Звенья патогенеза СД2</h1>
+                                <img class="section-background" src="app/img/slide_3_page_1_dia.png">
+                                <img class="section-background" src="app/img/slide_3_page_1_ice.png">
+                            </div>
+                            <div class="section-page">
+                                <h1 class="h1-slide-3">Смертельный октет</h1>
+                                <img class="section-background" src="app/img/slide_3_page_2_dia.png">
+                                <img class="section-background" src="app/img/slide_3_page_2_ice.png">
+                            </div>
+                            <div class="section-page">
+                                <h1 class="h1-slide-3">Звенья патогенеза СД2</h1>
+                                <img class="section-background" src="app/img/slide_3_page_3_dia.png">
+                                <img class="section-background" src="app/img/slide_3_page_3_ice.png">
+                            </div>
+                        </div>
+                        <div class="custom-input custom-input-range" pages-id="slide-3-pages">
+                            <div class="custom-input-range-ranger">
+                                <div class="custom-input-range-ranger-progress"></div>
+                                <div class="custom-input-range-ranger-thumb"></div>
+                            </div>
+                            <ul class="custom-input-range-labels">
+                                <li>1988</li>
+                                <li>2009</li>
+                                <li>2016</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
         <div id="notifier-scroll-down">
