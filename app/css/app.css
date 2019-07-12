@@ -102,7 +102,7 @@ ul.paging {
     color: transparent;
     font-size: 0px;
     list-style-type: none;
-    transform: translateY(-50%) translateY(-3px);
+    transform: translate(-50vw, -50%) translate(66.7vh, -3px);
 }
 
 ul.paging > li {
